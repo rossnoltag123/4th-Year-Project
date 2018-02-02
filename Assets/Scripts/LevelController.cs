@@ -4,26 +4,28 @@ using UnityEngine;
 
 public class LevelController 
 {
-    /// <summary>
-    /// This is instantiating Level Model class
-    /// </summary>
-    private LevelModel theModel;
 
-    /// <summary>
-    /// This is instantiating Level View class
-    /// </summary>
+    public LevelModel levelModel;
+
     private LevelView theView;
 
-    /// <summary>
-    /// This is the constuctor for this class
-    /// </summary>
-    public LevelController(LevelModel theModel, LevelView theView)
+    public LevelController(LevelModel levelModel, LevelView theView)
     {
         this.theView = theView;
-        this.theModel = theModel;
+        this.levelModel = levelModel;
 
     }
+    
+    /*
+    private LevelModel levelModel;
 
-	
+    private LevelView levelView;
 
+    public LevelController(LevelModel levelModel, LevelView levelView)
+    {
+        this.levelView = levelView;
+        this.levelModel = levelModel;
+
+    }
+    */
 }

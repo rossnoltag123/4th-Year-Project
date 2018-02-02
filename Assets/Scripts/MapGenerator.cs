@@ -9,6 +9,7 @@ public class MapGenerator : MonoBehaviour
 
     [Range(0, 1)]
     public float tileOutline;
+
     public float[] tilePointX;
     public Vector3[,] positionArray;
     public Vector3 tilePosition;

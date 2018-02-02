@@ -36,7 +36,7 @@ public class ButtonController : MonoBehaviour
     /// </summary>
     public void StartGame()
     {/// Method- onclick loads the first level
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Scene2_Level1");/*!< Detailed description after the member */
+        //AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Scene2_Level1");/*!< Detailed description after the member */
     }
 
     /// <summary>
@@ -45,7 +45,7 @@ public class ButtonController : MonoBehaviour
     public void MainMenu()
     {
         /// Method- onClick loads the Main menu
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Scene1_MainMenu");
+       // AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Scene1_MainMenu");
     }
 
     /// <summary>

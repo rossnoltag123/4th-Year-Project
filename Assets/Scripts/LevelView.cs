@@ -3,131 +3,76 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelView : MonoBehaviour
-{   
-     /// <summary>
-     /// instantiating object
-     /// </summary>
-    public GameObject tilePrefab;
+{
+    private LevelController levelcontroller;
 
-    //public GameObject tileContainerGO;
-
-    /// <summary>
-    /// instantiating object
-    /// </summary>
     private LevelModel levelModel;
 
-    /// <summary>
-    /// initializing variables
-    /// </summary>
+    public GameObject tilePrefab;
+    public GameObject blackPrefabTile;
+    public GameObject [,] tiles;
+
+    private GameObject newTile;
+    private GameObject newBlackTile;
+
+    public Vector3 tilePosition;
+    public List<Vector3> positionZ;
     public int mapSize;
 
-    /// <summary>
-    /// instantiating object array
-    /// </summary>
-    public GameObject[,] tiles;
-
-    /// <summary>
-    /// instantiating variables
-    /// </summary>
+    [Range(0, 1)]
     public float tileOutline;
 
-    /// <summary>
-    /// instantiating object
-    /// </summary>
-    public GameObject tileClones;
-
-    /// <summary>
-    /// instantiating vector position
-    /// </summary>
-    List<Vector3> positionZ;
-    //public Vector3[] tilePositions;
-
-    /// <summary>
-    /// instantiating variables
-    /// </summary>
-    GameObject newTile;
-
-    /// <summary>
-    /// instantiating object
-    /// </summary>
-    Vector3 tilePosition;
-
-    /// <summary>
-    /// On Start - display map
-    /// </summary>
     void Start()
     {
-        DisplayMap();  
+       // DisplayMap(tiles[], x,  y);      
     }
 
-
-    /// <summary>
-    /// Setting map to specific size  X x Y
-    /// </summary>
     public void SetModel(LevelModel levelModel)
     {
         this.mapSize = levelModel.GetMapSize();
-        this.tiles = new GameObject[mapSize,mapSize];
+        this.tiles = new GameObject[mapSize, mapSize];
         this.levelModel = levelModel;
     }
 
-    /// <summary>
-    /// Display the map
-    /// </summary>
+
     public void DisplayMap()
     {
-        for (int x=0; x < mapSize; x++)
+        for(int i = 0; i < mapSize; ++i)
         {
-            for (int y=0; y < mapSize; y++)
+            for (int j = 0; j < mapSize; ++j)
             {
-                CreateTile(x,y);
+                CreateTile( tiles[i,j] ,i ,j);
+
+
+               // tiles[i,j]= tiles[x,y];
             }
         }
-    }
 
-    /// <summary>
-    /// Set clones to parent 
-    /// </summary>
-    public void SetParent(GameObject TileClones2)
-    {
-        newTile.transform.parent= TileClones2.transform;
-    }
+      //  Debug.Log(levelModel.GetMap[,]);
 
-    /// <summary>
-    /// Create tiles from prefab
-    /// </summary>
-    private void CreateTile(int x, int y)
+           //CreateTile(x, y);
+           //Also grab co-ords on the way?
+    }
+        
+    private void CreateTile(int[,] tiles, int x, int y)
     {
-        newTile = (GameObject)Instantiate(tilePrefab) as GameObject;
-        Vector3 tilePosition = new Vector3(x + 0.5f, 0, y + 0.5f);
+        newTile = (GameObject)Instantiate(tilePrefab) as GameObject;     
+       
+        //display tile at that position
+
+        Vector3 tilePosition = new Vector3(x + 0.5f, 0.0f, y + 0.5f);
+
         newTile.transform.position = tilePosition;
-        //SetParent(findTileClones);
-        // newTile.localScale = Vector3.one * (1 - tileOutline);
-       // newTile.transform.parent = tileContainerGO.transform;
-    }
 
-    /// <summary>
-    /// Destroy tile clones
-    /// </summary>
-    public void DestroyTiles()
-    {
-        var clones = GameObject.FindGameObjectsWithTag("clone");
-        foreach (var clone in clones)
-        {
-            Destroy(clone);
-        }
-    }
+        //tiles[x, y] = tilePosition;//index size
 
-    /// <summary>
-    /// Find the position of tile
-    /// </summary>
-    void positionOfTile()
-    {
-      var  tilePosition = GameObject.FindGameObjectsWithTag("clone");
-        foreach (var pos in tilePosition)
-        {
-           // tilePositions[pos];
-        }
+        newTile.transform.localScale = Vector3.one * (1 - tileOutline);
+        newBlackTile = (GameObject)Instantiate(blackPrefabTile);
+        Vector3 blackTilePosition = new Vector3(x + 0.5f, -0.009f, y + 0.5f);
+        newBlackTile.transform.position = blackTilePosition;
+
     }
+  //  x + 0.5f, 0.0f, y + 0.5f
+ 
 }
 
