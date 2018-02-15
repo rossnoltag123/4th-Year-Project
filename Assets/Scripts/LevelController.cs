@@ -4,28 +4,23 @@ using UnityEngine;
 
 public class LevelController 
 {
+    public LevelModel model;
+    public LevelView view;
 
-    public LevelModel levelModel;
+    public int[,] map;
+    public int mapSize; 
+  
 
-    private LevelView theView;
+    public void SetModel(LevelModel model){
+       model = new LevelModel(this.mapSize);         
+    }
 
-    public LevelController(LevelModel levelModel, LevelView theView)
-    {
-        this.theView = theView;
-        this.levelModel = levelModel;
+    public void SetView(LevelView view){
+        this.view = view; 
+    }
+
+    public void DisplayArray(){
 
     }
-    
-    /*
-    private LevelModel levelModel;
-
-    private LevelView levelView;
-
-    public LevelController(LevelModel levelModel, LevelView levelView)
-    {
-        this.levelView = levelView;
-        this.levelModel = levelModel;
-
-    }
-    */
+ 
 }
