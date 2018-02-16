@@ -37,7 +37,7 @@ public class LevelDesign : MonoBehaviour {
 
     void Start(){
         LevelOne();
-        Level(mapSizeLevelOne);
+        DisplayLevel(mapSizeLevelOne);
     }
 
     public void LevelOne() {
@@ -48,8 +48,26 @@ public class LevelDesign : MonoBehaviour {
         mapSizeLevelOne[2, 4] = SQUARE_MANEOUVORABLE_OBSTACLE;
         mapSizeLevelOne[2, 5] = SQUARE_PLAYER;
     }
- 
-    public void Level(int [,]mapX){
+
+    public void LevelTwo(int mapSize)
+    {
+        this.mapSize = mapSize;
+        map = mapSizeLevelTwo;
+        mapSizeLevelTwo[2, 2] = SQUARE_MANEOUVORABLE_OBSTACLE;
+        mapSizeLevelTwo[2, 3] = SQUARE_NON_MANEOUVRABLE_OBSTACLE;
+        mapSizeLevelTwo[2, 4] = SQUARE_MANEOUVORABLE_OBSTACLE;
+        mapSizeLevelTwo[2, 5] = SQUARE_PLAYER;
+    }
+
+    public void LevelScene()
+    {
+     //   if (Application.loadedLevel = 0)
+   //     {
+
+    //    }
+    }
+
+    public void DisplayLevel(int [,]mapX){
         for ( int x = 0; x < mapX.GetLength(0); x++){      
             for (int y = 0; y < mapX.GetLength(1); y++){   
                 if (mapX[x, y] == 0) { CreateTile(x, y); }    
