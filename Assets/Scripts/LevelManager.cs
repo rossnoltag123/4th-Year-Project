@@ -5,81 +5,54 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour {
   
     private LevelModel model;
-    private LevelView view;
     private LevelController controller;
 
-    private GameObject newTile;
-    public GameObject tilePrefab;
+    private LevelView view;
+    private LevelView2 view2;
 
     public int[,] map;
     public int mapSize;
 
-	void Start () {
-  
-    }
+    public int level1 = 1;
+    public int level2 = 2;
+    public int level3 = 3;
 
-
-
-
-
-
-    public void CreateTile(int x, int y)
+    void Start()
     {
-        newTile = (GameObject)Instantiate(tilePrefab) as GameObject;
-        Vector3 tilePosition = new Vector3(x + 0.5f, 0.0f, y + 0.5f);
-        newTile.transform.position = tilePosition;
+        SetMapSize();
+
+        //Model
+        model = new LevelModel(mapSize);
+
+        //View 2 tiles...
+        view2 = GetComponent<LevelView2>();
+        view2.SetModel(model);
+        view2.SetMapSize(mapSize);
+        view2.SetView();//??
+       // view2.SetLevel(map);//??
+
+        //View 1 txt
+        view = new LevelView();
+        view.SetModel(model);
+     
+        //Controller
+        controller = new LevelController();
+        controller.SetModel(model);
+        controller.SetView(view);
+        controller.SetLevel();
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /*
-    public void KeyPressTest(){
-        if(Input.GetKeyDown(KeyCode.Space)){
-            model.currentSquareState = LevelModel.SquareState.SQUARE_EMPTY;
+    //this will depend on what determines next level, new scene etc
+    public void SetMapSize()
+    { 
+        if(level1 == 1){
+            this.mapSize = 6;
         }
-
-        if (Input.GetKeyDown(KeyCode.M)){
-            model.currentSquareState = LevelModel.SquareState.SQUARE_MANEOUVORABLE_OBSTACLE;
+        if (level2 == 2){
+            this.mapSize = 8;
         }
-
-        if (Input.GetKeyDown(KeyCode.N)){
-            model.currentSquareState = LevelModel.SquareState.SQUARE_NON_MANEOUVRABLE_OBSTACLE;
-        }
-
-        if (Input.GetKeyDown(KeyCode.N)){
-            model.currentSquareState = LevelModel.SquareState.SQUARE_PLAYER;
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space)){
-            model.currentSquareState = LevelModel.SquareState.SQUARE_MANEOUVORABLE_OBSTACLE_PLAYER;
+        if (level3 == 3){
+            this.mapSize = 10;
         }
     }
-    
-   */
-
 }

@@ -1,25 +1,34 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class LevelView 
+﻿public class LevelView 
 {
     private LevelController controller;
     private LevelModel model;
+    private LevelManager manager;
 
-    public int [,] map;
-    public int mapSize;
+    private int [,] map;
+    private int mapSize;
 
     public void SetModel(LevelModel model)
     {    
          this.model = model;
     }
 
-    public void Refresh()
-    {   //to be updated
-        controller.DisplayArray();
+    public void SetController(LevelController controller)
+    {
+        this.controller = controller;
     }
-        
-    
+
+    public void SetView(int mapSize)
+    {
+        this.mapSize = mapSize;
+    }
+
+    public void UpdateView()
+    {
+        this.map = model.map;
+    }
+
 }
+
+ 
+
 

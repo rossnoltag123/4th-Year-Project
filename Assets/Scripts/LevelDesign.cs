@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelDesign : MonoBehaviour {
-
+   
     private LevelModel model;
     public LevelController controller;
     public LevelModel.SquareState currentSquareState;
@@ -12,36 +12,39 @@ public class LevelDesign : MonoBehaviour {
     private GameObject newTile;
     public GameObject tilePrefab;
 
+    
     private int SQUARE_EMPTY = 1 ;
     private int SQUARE_MANEOUVORABLE_OBSTACLE = 2;
     private int SQUARE_NON_MANEOUVRABLE_OBSTACLE = 3;
     private int SQUARE_PLAYER = 4;
     private int SQUARE_MANEOUVORABLE_OBSTACLE_PLAYER = 5;
-
-    private int[,] mapSizeLevelOne = new int[6,6];
+    
+     
+    private int[,] mapSizeLevelOne ;
     private int[,] mapSizeLevelTwo = new int[8,8];
     private int[,] mapSizeLevelThree = new int[10,10];
 
     private int mapSize;
     private int[,] map;
 
-  //  public void SetModel(LevelModel model) {
-  //      this.model = model;
-  //      this.mapSize = model.mapSize;
-  //      this.map = model.map;
- //   }
-
- //   public void SetLevelManager(LevelManager manager){
- //       this.manager = manager;
- //   }
-
-    void Start(){
-        LevelOne();
-        Level(mapSizeLevelOne);
+    public void SetModel(LevelModel model) {
+        this.model = model;
+        this.mapSize = model.mapSize;
+        this.map = model.map;
     }
 
-    public void LevelOne() {
-        mapSize = 6;
+    public void SetLevelManager(LevelManager manager){
+        this.manager = manager;
+    }
+
+    void Start()
+    {
+         LevelOne(mapSize);
+         Level(mapSizeLevelOne);
+    }
+
+    public void LevelOne(int mapSize) {
+        this.mapSize = mapSize;
         map = mapSizeLevelOne;
         mapSizeLevelOne[2, 2] = SQUARE_MANEOUVORABLE_OBSTACLE;
         mapSizeLevelOne[2, 3] = SQUARE_NON_MANEOUVRABLE_OBSTACLE;
@@ -61,12 +64,13 @@ public class LevelDesign : MonoBehaviour {
         }
     }
 
+    
     public void CreateTile(int x, int y){
         newTile = (GameObject)Instantiate(tilePrefab) as GameObject;
         Vector3 tilePosition = new Vector3(x + 0.5f, 0.0f, y + 0.5f);
         newTile.transform.position = tilePosition;
     }
-
+    
     /*   
     0 1 2 3 4 5 6 
     0  x x x x x x x
