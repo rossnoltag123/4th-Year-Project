@@ -1,4 +1,13 @@
 # Logic
+
+I have the levelModel fully tested and working and a few other tests. I spent a little bit of time trying to get
+the text display working in a seperate test scene and also used an editor window, for somthing different. The original
+idea was to display the whole game in the console. Any way ive been up to my eyes with a few projects, sorry for the
+late update. I will be able to get some more testing done during the week.
+
+
+
+
 4th Year Project - Games design
 
 version 1.0
