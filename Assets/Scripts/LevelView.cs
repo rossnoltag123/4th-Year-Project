@@ -1,30 +1,37 @@
-﻿public class LevelView 
+﻿using UnityEngine.UI;
+using UnityEngine;
+using System.IO;
+
+public class LevelView 
 {
     private LevelController controller;
     private LevelModel model;
-    private LevelManager manager;
+    public LevelLayoutFromTextFile textFile;
+    public string levelLayOut;
 
-    private int [,] map;
-    private int mapSize;
-
+    
     public void SetModel(LevelModel model)
     {    
          this.model = model;
     }
 
-    public void SetController(LevelController controller)
+    public void SetController(LevelController controller )
     {
         this.controller = controller;
     }
 
-    public void SetView(int mapSize)
+    public void SetTextFile(LevelLayoutFromTextFile textFile)
     {
-        this.mapSize = mapSize;
+        this.textFile = textFile;
     }
 
-    public void UpdateView()
-    {
-        this.map = model.map;
+    // I was testing some text displays, workin progress.
+    public void Refresh()
+    { 
+        //test
+        //  textFile.levelLayOutString;
+        // textFile.ConvertArrayStringtoNumber( 10, 11);
+        //  controller.TextFile();//returns a string.....
     }
 
 }

@@ -1,58 +1,53 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class LevelManager : MonoBehaviour {
-  
+public class LevelManager : MonoBehaviour
+{
     private LevelModel model;
     private LevelController controller;
-
     private LevelView view;
-    private LevelView2 view2;
+    private LevelLayoutFromTextFile textFile;
 
-    public int[,] map;
-    public int mapSize;
-
-    public int level1 = 1;
-    public int level2 = 2;
-    public int level3 = 3;
+    //private LevelView2 view2
+    public Text screenTextLevel;
 
     void Start()
     {
-        SetMapSize();
+        //Text File Class
+        textFile = new LevelLayoutFromTextFile();
+        textFile.ReadTextFile();
+   
+        //model
+        model = new LevelModel(18);
 
-        //Model
-        model = new LevelModel(mapSize);
-
-        //View 2 tiles...
-        view2 = GetComponent<LevelView2>();
-        view2.SetModel(model);
-        view2.SetMapSize(mapSize);
-        view2.SetView();//??
-       // view2.SetLevel(map);//??
-
-        //View 1 txt
-        view = new LevelView();
-        view.SetModel(model);
-     
-        //Controller
+        // Controller
         controller = new LevelController();
         controller.SetModel(model);
         controller.SetView(view);
-        controller.SetLevel();
+  
+        // View 
+        view = new LevelView();
+        // view.SetModel(model);
+        view.Refresh();
+
+        DisplayTextLevel();
     }
 
-    //this will depend on what determines next level, new scene etc
-    public void SetMapSize()
-    { 
-        if(level1 == 1){
-            this.mapSize = 6;
-        }
-        if (level2 == 2){
-            this.mapSize = 8;
-        }
-        if (level3 == 3){
-            this.mapSize = 10;
-        }
+    public void DisplayTextLevel() { screenTextLevel.text = textFile.levelLayOutString; }
+
+    ////////////////////////////////////TEST SCENE////////////////////////////////
+    //This button is being used to add 1, it will update display
+    // giving the effect of the player moving accross the "board".
+    // Work in progress......
+    public void ClickButtonMove()
+    {
+        int y=0;
+        textFile.UpdateTextDisplay(y);
+        y++;
+        Debug.Log("Y"+y);
     }
+
 }

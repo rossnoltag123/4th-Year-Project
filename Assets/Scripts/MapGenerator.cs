@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//This is one of the very first scripts, generates the map per level. It has been abandoned.
+
 public class MapGenerator : MonoBehaviour
 {
     public Transform tilePrefab;

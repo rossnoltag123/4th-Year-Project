@@ -47,3 +47,36 @@ public class PlayerModelTest
 
     }
 }
+/*
+    [Test]
+    public void test2_Square_Type_Enum_In_Constructor()
+    {
+        //Arrange
+        LevelModel m = new LevelModel(4);
+        LevelModel.SquareType expectedResult = LevelModel.SquareType.START_SQUARE;
+
+        //Act
+        LevelModel.SquareType result = m.map[0,0];
+
+        //Assert
+        Assert.AreEqual(expectedResult, result);
+    }
+
+    [Test]
+    public void test3_Square_Type_Enum_In_Constructor()
+    {
+        //Arrange
+        LevelModel m = new LevelModel(4);
+
+       // LevelModel.SquareType expectedResult =     m.map[3,3] = LevelModel.SquareType.OBSTACLE_FIRE;
+
+        LevelModel.SquareType expectedResult = LevelModel.SquareType.OBSTACLE_FIRE;
+
+        //Act
+        LevelModel.SquareType result = m.map[3, 3];
+
+
+        //Assert
+        Assert.AreEqual(expectedResult, result);
+    }
+    */

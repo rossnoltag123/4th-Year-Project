@@ -6,7 +6,7 @@ using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 
-
+//This is the load a save file, and for general persistant storage, carrying points to the next scene etc.
 public class PersistanStorage : MonoBehaviour
 {
     /// <summary>
